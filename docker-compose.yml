@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  ### Setup backend container ###
+  server:
+    build: ./backend
+    expose:
+      - ${APP_SERVER_PORT}
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_POST: ${APP_SERVER_PORT}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    volumes:
+      - ./backend/src:/srv/app/school-server/src
+    command: npm start
+  ### Setup client container ###
+  client:
+    build: ./client
+    environment:
+      - VUE_APP_PORT=${VUE_APP_PORT}
+    expose:
+      - ${VUE_APP_PORT}
+    ports:
+      - ${VUE_APP_PORT}:${VUE_APP_PORT}
+    volumes:
+      - ./client/src:/srv/app/school-client/src
+      - ./client/public:/srv/app/school-client/public
+    links:
+      - server
+    command: http-server dist
