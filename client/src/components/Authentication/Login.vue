@@ -10,13 +10,26 @@
               <form>
                 <div class="field">
                   <div class="control">
-                    <input class="input is-large" type="email" placeholder="Your Email" autofocus>
+                    <input
+                      v-validate="'required|email'"
+                      name="email"
+                      class="input is-large"
+                      type="email"
+                      placeholder="Your Email"
+                      autofocus
+                    >
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control">
-                    <input class="input is-large" type="password" placeholder="Your Password">
+                    <input
+                      v-validate="'required'"
+                      name="password"
+                      class="input is-large"
+                      type="password"
+                      placeholder="Your Password"
+                    >
                   </div>
                 </div>
 

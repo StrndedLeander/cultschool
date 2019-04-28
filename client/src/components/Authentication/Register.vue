@@ -11,32 +11,59 @@
               <form>
                 <div class="field">
                   <div class="control">
-                    <input class="input is-large" type="text" placeholder="Choose your Username" autofocus>
+                    <input
+                      v-validate="'required'"
+                      class="input is-large"
+                      type="text"
+                      placeholder="Choose your Username"
+                      autofocus
+                    >
                   </div>
                 </div>
                 <div class="field">
                   <div class="control">
-                    <input class="input is-large" type="email" placeholder="Your Email">
+                    <input
+                      v-validate="'required|email'"
+                      class="input is-large"
+                      type="email"
+                      placeholder="Your Email"
+                    >
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control">
                     <input
+                      v-validate="'required|min:8'"
+                      name="password"
                       class="input is-large"
                       type="password"
+                      :class="{'is-danger': errors.has('password')}"
                       placeholder="Choose a secure Password"
+                      ref="password"
                     >
+                    <span
+                      v-show="errors.has('password')"
+                      class="help is-danger"
+                    >{{ errors.first('password') }}</span>
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control">
                     <input
+                      v-validate="'required|confirmed:password'"
+                      name="password_confirmation"
                       class="input is-large"
                       type="password"
+                      :class="{'is-danger': errors.has('password_confirmation')}"
                       placeholder="Confirm the password"
+                      data-vv-as="password"
                     >
+                    <span
+                      v-show="errors.has('password_confirmation')"
+                      class="help is-danger"
+                    >{{ errors.first('password_confirmation') }}</span>
                   </div>
                 </div>
 

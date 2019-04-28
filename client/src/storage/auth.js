@@ -1,7 +1,16 @@
 export default {
   namespaced: true,
   state: {
-    hasAcc: false
+    hasAcc: false,
+    login: {
+      email: '',
+      password: ''
+    },
+    register: {
+      username: '',
+      email: '',
+      password: ''
+    }
   },
   getters:{
 

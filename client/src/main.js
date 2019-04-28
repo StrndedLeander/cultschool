@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import bulma from "./assets/sass/main.scss";
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
 
 Vue.use(bulma);
 
