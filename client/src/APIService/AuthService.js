@@ -1,7 +1,10 @@
 import API from './APIService'
 
 export default {
-  login(body) {
-
+  async login(body) {
+    return API().post('/authentication', body)
+  },
+  register(body) {
+    return API().get('/authentication', body)
   }
 }

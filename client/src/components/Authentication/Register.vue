@@ -13,9 +13,12 @@
                   <div class="control">
                     <input
                       v-validate="'required'"
+                      :value="username"
+                      @input="updateName"
                       class="input is-large"
+                      name="username"
                       type="text"
-                      placeholder="Choose your Username"
+                      placeholder="Choose a Username"
                       autofocus
                     >
                   </div>
@@ -24,9 +27,12 @@
                   <div class="control">
                     <input
                       v-validate="'required|email'"
+                      :value="email"
+                      @input="updateEmail"
+                      name="email"
                       class="input is-large"
                       type="email"
-                      placeholder="Your Email"
+                      placeholder="Enter your E-Mail"
                     >
                   </div>
                 </div>
@@ -35,11 +41,13 @@
                   <div class="control">
                     <input
                       v-validate="'required|min:8'"
+                      :value="password"
+                      @input="updatePassword"
                       name="password"
                       class="input is-large"
                       type="password"
                       :class="{'is-danger': errors.has('password')}"
-                      placeholder="Choose a secure Password"
+                      placeholder="Choose a Password"
                       ref="password"
                     >
                     <span
@@ -53,11 +61,12 @@
                   <div class="control">
                     <input
                       v-validate="'required|confirmed:password'"
+                      v-model="password_confirm"
                       name="password_confirmation"
                       class="input is-large"
                       type="password"
                       :class="{'is-danger': errors.has('password_confirmation')}"
-                      placeholder="Confirm the password"
+                      placeholder="Confirm the Password"
                       data-vv-as="password"
                     >
                     <span
@@ -67,7 +76,11 @@
                   </div>
                 </div>
 
-                <button class="button is-block is-info is-large is-fullwidth">Register</button>
+                <button
+                  class="button is-block is-info is-large is-fullwidth"
+                  :disabled="errors.has('password_confirmation') || password_confirm.length < 8"
+                  @click="register"
+                >Register</button>
               </form>
             </div>
             <p class="has-text-grey">
@@ -82,10 +95,36 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
+  data() {
+    return {
+      password_confirm: ""
+    };
+  },
+  computed: {
+    ...mapState("auth", {
+      username: state => state.register.username,
+      email: state => state.register.email,
+      password: state => state.register.password
+    })
+  },
   methods: {
-    ...mapActions("auth", ["changeAuth"])
+    ...mapActions("auth", ["changeAuth", "register"]),
+    ...mapMutations("auth", [
+      "setRegisterName",
+      "setRegisterEmail",
+      "setRegisterPassword"
+    ]),
+    updateName(e) {
+      this.setRegisterName(e.target.value);
+    },
+    updateEmail(e) {
+      this.setRegisterEmail(e.target.value);
+    },
+    updatePassword(e) {
+      this.setRegisterPassword(e.target.value);
+    }
   }
 };
 </script>
