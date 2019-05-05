@@ -17,7 +17,7 @@ let router = new Router({
       // }
     },
     {
-      path: '/authentication',
+      path: '/sign',
       name: 'authentication',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route

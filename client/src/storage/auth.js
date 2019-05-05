@@ -31,13 +31,13 @@ export default {
         email: state.register.email,
         password: state.register.password
       })
-    },
-    login({state}) {
-      AuthService.login({
-        username: state.login.username,
-        password: state.login.password
-      })
     }
+    // login({state}) {
+    //   AuthService.login({
+    //     username: state.login.username,
+    //     password: state.login.password
+    //   })
+    // }
   },
   mutations:{
     setHasAcc(state, bool) {

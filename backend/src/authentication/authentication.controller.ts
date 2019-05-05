@@ -1,14 +1,14 @@
-import { Controller, Inject, Get, Post, Res, Body, HttpStatus } from '@nestjs/common';
+import { Controller, Inject, Get, Post, Res, Body, HttpStatus, Param, NotFoundException, Put, Query, Delete } from '@nestjs/common';
 import { AuthenticationService } from './authentication.service'
 import { RegisterDTO } from './dtos/register.dto';
 import { LoginDTO } from './dtos/login.dto';
 
 @Controller('authentication')
 export class AuthenticationController {
-  constructor(@Inject(AuthenticationService) private readonly authService: AuthenticationService) {}
-  
-  @Post()
-  async registerUser(@Res() res, @Body() registerDTO: RegisterDTO){
+  constructor(@Inject(AuthenticationService) private readonly authService: AuthenticationService) { }
+
+  @Post('register')
+  async registerUser(@Res() res, @Body() registerDTO: RegisterDTO) {
     console.log("A client is trying to register a user", res, registerDTO)
     const registeredUser = await this.authService.registerUser(registerDTO)
 
@@ -18,18 +18,36 @@ export class AuthenticationController {
     })
   }
 
-  @Get()
-  async loginUser(@Res() res, @Body() loginDTO: LoginDTO) {
-    await this.authService.loginUser(loginDTO).then(user => {
-      return res.status(HttpStatus.OK).json({
-        message: 'You are now logged in. Welcome!',
-        User: user
-      })
-    }).catch(err => {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        message: "Something went wrong!",
-        error: err
-      })
-    })
+  @Get('users')
+  async getAllUsers(@Res() res) {
+    const users = await this.authService.getAllUsers()
+    return res.status(HttpStatus.OK).json(users)
   }
-}
+
+  @Get('user/:userID')
+  async getUser(@Res() res, @Param('userID') userID) {
+    const user = await this.authService.getUser(userID)
+    if (!user) throw new NotFoundException('User does not exist!')
+    return res.status(HttpStatus.OK).json(user)
+  }
+
+  @Put('/update')
+  async updateUser(@Res() res, @Query('userID') userID, @Body() updateUserDTO: RegisterDTO) {
+    const user = await this.authService.updateUser(userID, updateUserDTO)
+    if (!user) throw new NotFoundException('Customer does not exist!');
+    return res.status(HttpStatus.OK).json({
+      message: `User ${userID} has been successfully updated`,
+      user
+    });
+  }
+
+  @Delete('/delete')
+  async deleteUser(@Res() res, @Query('userID') userID) {
+    const user = await this.authService.deleteUser(userID)
+    if(!user) throw new NotFoundException('Customer does not exist!');
+    return res.status(HttpStatus.OK).json({
+      message: `User ${userID} has been deleted`,
+      user
+    });
+  }
+}  
