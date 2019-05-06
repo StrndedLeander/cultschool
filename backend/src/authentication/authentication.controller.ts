@@ -9,7 +9,6 @@ export class AuthenticationController {
 
   @Post('register')
   async registerUser(@Res() res, @Body() registerDTO: RegisterDTO) {
-    console.log("A client is trying to register a user", res, registerDTO)
     const registeredUser = await this.authService.registerUser(registerDTO)
 
     return res.status(HttpStatus.OK).json({

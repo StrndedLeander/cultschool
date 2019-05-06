@@ -7,14 +7,7 @@ import { LoginDTO } from './dtos/login.dto';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) { 
-    var cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider();
-    cognitoidentityserviceprovider.
-  }
-
-  async createIdentityPool() {
-    
-  }
+  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
   async getAllUsers(): Promise<User[]> {
     const users = await this.userModel.find().exec()
