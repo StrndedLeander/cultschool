@@ -11,11 +11,13 @@
                 <div class="field">
                   <div class="control">
                     <input
-                      v-validate="'required|email'"
-                      name="email"
+                      v-validate="'required'"
+                      :value="username"
+                      @input="updateLoginName"
+                      name="username"
                       class="input is-large"
-                      type="email"
-                      placeholder="Your Email"
+                      type="text"
+                      placeholder="Username"
                       autofocus
                     >
                   </div>
@@ -25,21 +27,23 @@
                   <div class="control">
                     <input
                       v-validate="'required'"
+                      :value="password"
+                      @input="updateLoginPassword"
                       name="password"
                       class="input is-large"
                       type="password"
-                      placeholder="Your Password"
+                      placeholder="Password"
                     >
                   </div>
                 </div>
 
-                <div class="field has-text-left">
+                <!-- <div class="field has-text-left">
                   <label class="checkbox">
                     <input type="checkbox">
                     Remember me
                   </label>
-                </div>
-                <button class="button is-block is-info is-large is-fullwidth">Login</button>
+                </div>-->
+                <button class="button is-block is-info is-large is-fullwidth" @click="login">Login</button>
               </form>
             </div>
             <p class="help has-text-grey has-text-centered">
@@ -55,10 +59,23 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
+  computed: {
+    ...mapState("auth", {
+      username: state => state.login.username,
+      password: state => state.login.password
+    })
+  },
   methods: {
-    ...mapActions("auth", ["changeAuth"])
+    ...mapActions("auth", ["changeAuth", "login"]),
+    ...mapMutations("auth", ["setLoginName", "setLoginPassword"]),
+    updateLoginName(e) {
+      this.setLoginName(e.target.value);
+    },
+    updateLoginPassword(e) {
+      this.setLoginPassword(e.target.value);
+    }
   }
 };
 </script>
