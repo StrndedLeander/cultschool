@@ -1,95 +1,38 @@
 <template>
-<<<<<<< HEAD
-  <div class="navigation hero">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navigation hero is-desktop">
+    <nav class="navbar has-text-centered" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <div class="profile">
+        <router-link>
           <span class="icon">
             <i class="fas fa-user"></i>
           </span>
-        </div>
-        <div class="studentExp">
-          <figure class="image is-50x50">
-            <img src="https://via.placeholder.com/50">
-          </figure>
-        </div>
-        <a
-          role="button"
-          class="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+        </router-link>
       </div>
       <div class="navbar-menu">
         <div class="navbar-start">
-          <div class="classes">
-            <a class="navbar-item">Classes</a>
-						
-          </div>
-
-          <div class="connect">
-            <a class="navbar-item">Connect</a>
-=======
-  <div class="navbar hero">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <div class="columns">
-            <div class="column is-one-fifth">
-              <div class="columns">
-                <div class="column">
-                  <span class="icon">
-                    <i class="fas fa-user"></i>
-                  </span>
-                </div>
-                <div class="column">
-                  <figure class="image is-50x50">
-                    <img src="https://bulma.io/images/placeholders/50x50.png">
-                  </figure>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <a class="navbar-item">Home</a>
-
-          <a class="navbar-item">Documentation</a>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">More</a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item">About</a>
-              <a class="navbar-item">Jobs</a>
-              <a class="navbar-item">Contact</a>
-
-              <a class="navbar-item">Report an issue</a>
-            </div>
->>>>>>> a3d80e30e9166380c16a2850af34930728ba79ba
-          </div>
+          <a class="nav-item classes">
+            <p>CLASSES</p>
+            <span class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+          </a>
+          <a class="nav-item connect">
+            <p>CONNECT</p>
+            <span class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+          </a>
+          <a class="nav-item courses">
+            <p>COURSES</p>
+            <span class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </span>
+          </a>
+          <a class="nav-item explore">
+            <p>EXPLORE</p>
+          </a>
         </div>
-
-        <div class="navbar-end">
-<<<<<<< HEAD
-          <span class="icon">
-            <i class="fas fa-search"></i>
-          </span>
-=======
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">Log in</a>
-            </div>
-          </div>
->>>>>>> a3d80e30e9166380c16a2850af34930728ba79ba
-        </div>
+        <div class="navbar-end"></div>
       </div>
     </nav>
   </div>
@@ -100,26 +43,53 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
-.navigation {
-  background-color: #bbbbbb;
-  height: 70px;
-}
 .navbar {
-	height: 70px;
+  width: 100%;
 }
-.profile {
-  margin-top: 27px;
-  margin-right: 41px;
-  margin-left: 20px;
-  margin-bottom: 27px;
-}
-.studentExp {
-  height: 50px;
-  width: 50px;
-  margin: 10px 0px 10px 0px;
+.navbar-brand {
+  width: 25%;
   border: 1px solid black;
 }
-=======
->>>>>>> a3d80e30e9166380c16a2850af34930728ba79ba
+.navbar-start {
+  width: 66.67%;
+  border: 1px solid black;
+}
+.navbar-end {
+  width: 33.3%;
+  border: 1px solid black;
+}
+.classes{
+  margin-left: 3%;
+}
+.courses{
+  margin-left: 10%;
+}
+a {
+  margin-right: 15%;
+}
+a p {
+  margin-top: 25%;
+}
+.navigation {
+  background-color: #bbbbbb;
+  width: 100%;
+  height: 70px;
+}
+.column {
+  border: 1px solid black;
+}
+.navbar {
+  height: 70px;
+}
+a {
+  color: #667581;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+.fa-chevron-down {
+  color: #f5f5f5;
+}
+.studentExp {
+  border: 1px solid black;
+}
 </style>
