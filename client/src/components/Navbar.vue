@@ -8,21 +8,48 @@
           </span>
         </router-link>
         <StudentsExp class="studentsExp"></StudentsExp>
-        <a
-          role="button"
-          class="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbars"
-          @click="toggleMenu"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+        <div class="dropdown is-hidden-desktop" v-bind:class="{'is-active': touchMenu}">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="touch-menu"
+              @click="toggleTouchMenu"
+            >
+              <span>Content</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+            <div class="dropdown-menu" id="touch-menu" role="menu">
+              <div class="dropdown-content is-pulled-left">
+                <a class="dropdown-item">
+                  CLASSES
+                  <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                  </span>
+                </a>
+                <a class="dropdown-item">
+                  CONNECT
+                  <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                  </span>
+                </a>
+                <a class="dropdown-item">
+                  COURSES
+                  <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                  </span>
+                </a>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item">EXPLORE</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="navbar-menu" id="navbars">
-        <div class="navbar-start">
+        <div class="navbar-start is-hidden-touch">
           <a class="nav-item classes">
             <p>CLASSES</p>
             <span class="icon">
@@ -70,24 +97,52 @@
 <script>
 import StudentsExp from "./Students/Experience";
 export default {
+  data() {
+    return {
+      touchMenu: false
+    };
+  },
   components: {
     StudentsExp
   },
   methods: {
-    toggleMenu(e) {
-      e.target.classList.toggle("is-active");
-
-      const target = e.target.dataset.target;
-      console.log(target);
-      const $target = document.getElementById(target);
-
-      $target.classList.toggle("is-active");
+    toggleTouchMenu() {
+      if (this.touchMenu == true) {
+        this.touchMenu = false;
+      } else {
+        this.touchMenu = true;
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 1023.5px) {
+  .is-hidden-touch {
+    display: none !important;
+  }
+  .navbar-brand {
+    width: 100%;
+    height: 100%;
+  }
+  .dropdown {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .is-hidden-desktop {
+    display: none !important;
+  }
+  .navbar-brand {
+    width: 25%;
+    height: 100%;
+  }
+}
+
 .navigation {
   background-color: #bbbbbb;
   width: 100%;
@@ -95,10 +150,7 @@ export default {
 }
 .navbar {
   width: 100%;
-  height: 70px;
-}
-.navbar-brand {
-  width: 25%;
+  height: 100%;
 }
 .navbar-start {
   width: 67%;
@@ -119,8 +171,8 @@ export default {
 .courses {
   margin-left: 10%;
 }
-a p {
-  margin-top: 25%;
+.navbar-start > .nav-item {
+  margin-top: 2%;
 }
 .profile {
   margin-left: 1rem;

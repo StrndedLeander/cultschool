@@ -1,12 +1,11 @@
 <template>
-  <div class="hero">
-    <div>Welcome to the school of future!</div>
-    <ListUsers></ListUsers>
+  <div class="hero-body">
+    
   </div>
 </template>
 
 <script>
-import ListUsers from '../components/ListUsers'
+import MakeRequest from '../components/Dashboard/Students/Request'
 export default {
   name: "dashboard",
   components: {
@@ -16,4 +15,9 @@ export default {
 </script>
 
 <style scoped>
+.hero-body {
+  background-image: url("../assets/Dashboard/hexagon.png");
+  margin: 2.5vw 2.5vw 2.5vw 2.5vw;
+  width: 95vw;
+}
 </style>
