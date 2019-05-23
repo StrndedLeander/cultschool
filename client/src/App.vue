@@ -15,10 +15,12 @@ export default {
 </script>
 
 <style>
-html {
-  overflow-y: auto !important;
+* {
   padding: 0;
   margin: 0;
+}
+html {
+  overflow-y: auto !important;
 }
 .hero {
   width: 100vw;
