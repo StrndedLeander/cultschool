@@ -51,21 +51,24 @@ export default {
 }
 .request {
   width: 200px;
-  height: 215px;
+  height: 200px;
   background-color: #667581;
 }
 .columns {
-  margin-left: 1%;
+  margin: 0;
   width: 99%;
-  height: 35%;
+  height: 25%;
 }
 .studentExp {
-  margin-left: 40px;
+  margin-left: 35%;
 }
 .field {
   margin-left: 20px;
   width: 160px;
   height: 22px;
+}
+.is-mobile {
+  margin: 0;
 }
 .control {
   width: 100%;
@@ -75,6 +78,9 @@ export default {
   width: 160px;
   height: 22px;
 }
+.studentProfile {
+  padding: 0;
+}
 .chooseActivity {
   padding: 0px !important;
   line-height: 1em;
@@ -82,6 +88,7 @@ export default {
   height: 22px;
 }
 .button {
+  margin-top: 6%;
   line-height: 1em;
   padding: 0px;
   width: 90px;

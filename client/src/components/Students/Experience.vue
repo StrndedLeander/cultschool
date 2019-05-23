@@ -31,9 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.progress {
-    margin-top:0.5rem;
-}
+
 p {
   font-size: 11px;
   font-weight: 600;

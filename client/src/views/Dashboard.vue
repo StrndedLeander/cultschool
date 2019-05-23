@@ -3,13 +3,13 @@
     <div class="columns">
       <div class="column">
         <div class="columns">
-          <div class="column">
+          <div class="column first">
             <MakeRequest class="makeReq topReq"></MakeRequest>
             <MakeRequest class="makeReq downReq"></MakeRequest>
           </div>
-          <div class="column">
-            <MakeRequest class="makeReq topReq"></MakeRequest>
-            <MakeRequest class="makeReq downReq"></MakeRequest>
+          <div class="column second">
+            <GetRequest class="getReq topReq"></GetRequest>
+            <GetRequest class="getReq downReq"></GetRequest>
           </div>
         </div>
       </div>
@@ -21,10 +21,12 @@
 
 <script>
 import MakeRequest from "../components/Dashboard/Students/Request";
+import GetRequest from "../components/Dashboard/Students/Requested"
 export default {
   name: "dashboard",
   components: {
-    MakeRequest
+    MakeRequest,
+    GetRequest
   }
 };
 </script>
@@ -39,8 +41,16 @@ export default {
 .columns {
   margin: 0;
   padding: 0;
+  margin-top: 1.5%;
+  margin-left: 0.3w;
+}
+.column {
+  padding: 0;
+}
+.second{
+  margin-left: 0.2vw;
 }
 .downReq {
-  margin-top: 15%;
+  margin-top: 10%;
 }
 </style>

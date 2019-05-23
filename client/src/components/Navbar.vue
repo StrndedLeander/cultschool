@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation hero is-desktop">
+  <div class="navigation hero">
     <nav class="navbar has-text-centered" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link class="profile" to="#">
@@ -142,7 +142,9 @@ export default {
     height: 100%;
   }
 }
-
+.studentsExp{
+  margin-top: 0.5rem;
+}
 .navigation {
   background-color: #bbbbbb;
   width: 100%;
