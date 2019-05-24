@@ -3,17 +3,15 @@
     <div class="columns">
       <div class="column">
         <div class="columns">
-          <div class="column first">
-            <MakeRequest class="makeReq topReq"></MakeRequest>
-            <!-- <MakeRequest class="makeReq downReq"></MakeRequest> -->
+          <div class="column">
+            <MakeRequest></MakeRequest>
           </div>
-          <div class="column second">
-            <GetRequest class="getReq topReq"></GetRequest>
-            <!-- <GetRequest class="getReq downReq"></GetRequest> -->
+          <div class="column">
+            <GetRequested></GetRequested>
           </div>
         </div>
       </div>
-      <div class="column"></div>
+      <div class="column"><Courses></Courses></div>
       <div class="column"></div>
     </div>
   </div>
@@ -21,12 +19,14 @@
 
 <script>
 import MakeRequest from "../components/Dashboard/Students/Request";
-import GetRequest from "../components/Dashboard/Students/Requested"
+import GetRequested from "../components/Dashboard/Students/Requested";
+import Courses from "../components/Dashboard/Students/Courses/Courses"
 export default {
   name: "dashboard",
   components: {
     MakeRequest,
-    GetRequest
+    GetRequested,
+    Courses
   }
 };
 </script>
@@ -38,19 +38,4 @@ export default {
   margin: 2.5vw 2.5vw 2.5vw 2.5vw;
   width: 95vw;
 }
-/* .columns {
-  margin: 0;
-  padding: 0;
-  margin-top: 1.5%;
-  margin-left: 0.3w;
-}
-.column {
-  padding: 0;
-}
-.second{
-  margin-left: 0.2vw; */
-/* } */
-/* .downReq {
-  margin-top: 10%;
-} */
 </style>

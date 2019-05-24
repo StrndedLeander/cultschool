@@ -1,5 +1,5 @@
 <template>
-  <radial-progress-bar class="progress"
+  <radial-progress-bar
     :diameter="50"
     :completed-steps="studentLevel"
     :total-steps="totalLevel"
