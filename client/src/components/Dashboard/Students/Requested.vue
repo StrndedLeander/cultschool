@@ -1,33 +1,25 @@
 <template>
   <div class="getRequest container">
-    <div class="columns is-mobile">
-      <div class="studentProfile column">
-        <figure class="image is-64x64">
+    <div class="columns studentInfo is-mobile">
+      <div class="studentProfile column is-paddingless">
+        <figure class="image">
           <img src="https://via.placeholder.com/64">
         </figure>
       </div>
-      <div class="studentExp column">
-        <StudentExp></StudentExp>
+      <div class="column is-paddingless">
+        <StudentExp class="studentExp"></StudentExp>
       </div>
     </div>
+
     <div class="requestForm">
-      <label class="label has-text-centered">Surname Name</label>
-      <article class="message">
-        <div class="message-header">
-          <p>Course #1</p>
-        </div>
-        <div class="message-body has-text-justified">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          tempus quis placerat ut
-        </div>
-      </article>
-      <div class="field is-grouped">
-        <div class="control">
-          <button type="button" class="button accept">Accept</button>
-        </div>
-        <div class="control">
-          <button type="button" class="button decline">Decline</button>
-        </div>
+      <div class="tags has-addons is-marginless is-paddingless has-text-left">
+        <span class="tag is-dark">{{studentName}}</span>
+        <span class="tag is-info">{{activityName}}</span>
+      </div>
+      <textarea class="textarea is-paddingless is-small has-fixed-size" rows="2" readonly v-model="requestMessage"></textarea>
+      <div class="buttons are-small">
+        <button type="button" class="button has-text-white accept is-paddingless">Accept</button>
+        <button type="button" class="button has-text-white decline is-paddingless">Decline</button>
       </div>
     </div>
   </div>
@@ -38,64 +30,80 @@ import StudentExp from "../../Students/Experience";
 export default {
   components: {
     StudentExp
+  },
+  data() {
+    return {
+      studentName: "Surname Name",
+      activityName: "Course #1",
+      requestMessage: "Hello pls work with me please thank you"
+    };
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .getRequest {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  height: 200px;
+  width: 13vw;
+  height: 13vw;
+  max-width: 200px;
+  max-height: 200px;
+  min-width: 190px;
+  min-height: 190px;
   background-color: #667581;
+  border-radius: 5%;
 }
-.studentProfile {
-  padding: 0;
-}
-.columns {
-  margin: 0;
+// top of request
+.studenInfo {
   width: 100%;
-  height: 25%;
+  height: 100%;
 }
-.field {
-  margin: 0;
-  padding: 0;
-  width: 200px;
+.column {
+  width: 50%;
 }
-.studentExp {
-  margin-left: 35%;
-}
-.message {
-  padding: 0;
-  width: 160px;
-  height: 60%;
+.image {
+  width: 70%;
   margin: auto;
 }
-
-.message-header {
-  font-size: 12px;
-  height: 10px;
+.image > img {
+  border-radius: 50%;
+  margin-top: 2px;
 }
-.message-body {
-  font-size: 11px;
-  overflow-y: auto;
-  height: 38px;
-  padding: 0;
+.studentExp {
+  margin: auto;
+  margin-top: 12%;
+}
+// bottom of Request
+.requestForm {
+  width: 95%;
+  margin: auto;
+}
+.textarea {
+  width: 100%;
+  height: 33%;
+  margin-bottom: 2%;
+}
+.buttons {
+  width: 90%;
+  margin: auto;
 }
 .button {
-  line-height: 1em;
-  padding: 0px;
-  width: 90px;
-  height: 22px;
   background-color: #7b8892;
-  color: black;
-}
-.accept {
-	margin-left: 4px;
-  border: 3px solid #5bcd72;
+  border-radius: 5%;
+  width: 40%;
+  height: 100%;
+  margin-left: 5%;
 }
 .decline {
   border: 3px solid #ff7777;
+}
+.accept {
+  border: 3px solid #5bcd72;
+}
+.tags {
+  width: 100%;
+}
+.tag {
+  width: 50%;
+  overflow: hidden;
 }
 </style>

@@ -1,35 +1,57 @@
 <template>
-  <div class="request container">
-    <div class="columns is-mobile">
-      <div class="studentProfile column">
-        <figure class="image is-64x64">
+  <div class="request container is-marginless is-paddingless">
+    <article></article>
+    <div class="columns studentInfo is-mobile">
+      <div class="studentProfile column is-paddingless">
+        <figure class="image">
           <img src="https://via.placeholder.com/64">
         </figure>
       </div>
-      <div class="studentExp column">
-        <StudentExp></StudentExp>
+      <div class="column is-paddingless">
+        <StudentExp class="studentExp"></StudentExp>
       </div>
     </div>
-    <div class="requestForm has-text-centered">
-      <label class="label">Surname Name</label>
-      <div class="field">
-        <div class="control">
-          <div class="select">
-            <select class="chooseActivity">
-              <option default>Choose Activity</option>
-              <option>Course #1</option>
-              <option>Course #2</option>
-              <option>Project #1</option>
-            </select>
-          </div>
+
+    <div class="requestForm">
+      <div class="chooseActivity">
+        <div class="select is-small is-rounded is-success">
+          <select v-model="selectedActivity">
+            <option default>Choose an Activity!</option>
+            <option disabled>___________________________</option>
+            <option v-for="(activity, index) in activities" :key="index">{{activity}}</option>
+          </select>
         </div>
       </div>
-      <div class="field">
+      <div class="field is-paddingless is-marginless">
+        <p class="control searchStudent has-icons-left">
+          <input
+            class="input studentName is-small is-rounded has-text-centered is-paddingless"
+            placeholder="Students Name"
+          >
+          <span class="icon is-small is-left">
+            <i class="fas fa-search"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field is-grouped is-paddingless is-marginless">
+        <div class="messageInput control has-icons-left has-icons-right">
+          <input
+            class="input is-small is-rounded has-text-centered is-marginless is-paddingless"
+            type="text"
+            placeholder="Send Message.."
+          >
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </div>
         <div class="control">
-          <input class="input" type="text" placeholder="Send Message..">
+          <button class="button submitBtn is-primary is-small">
+            <span class="icon is-right">
+              <i class="fas fa-arrow-right"></i>
+            </span>
+          </button>
         </div>
       </div>
-      <button type="button" class="button">Request</button>
     </div>
   </div>
 </template>
@@ -39,62 +61,64 @@ import StudentExp from "../../Students/Experience";
 export default {
   components: {
     StudentExp
+  },
+  data() {
+    return {
+      selectedActivity: "Choose an Activity!",
+      activities: ["Course #1", "Course #2", "Course #3", "Project #1"]
+    };
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.requestForm {
-  padding: 0px;
-  height: 60%;
-  margin-top: 0px;
-}
 .request {
-  width: 200px;
-  height: 200px;
+  width: 13vw;
+  height: 13vw;
+  max-width: 200px;
+  max-height: 200px;
+  min-width: 190px;
+  min-height: 190px;
   background-color: #667581;
+  border-radius: 5%;
 }
-.columns {
-  margin: 0;
-  width: 99%;
-  height: 25%;
-}
-.studentExp {
-  margin-left: 35%;
-}
-.field {
-  margin-left: 20px;
-  width: 160px;
-  height: 22px;
-}
-.is-mobile {
-  margin: 0;
-}
-.control {
+// Top of Request
+.studenInfo {
   width: 100%;
   height: 100%;
 }
-.input {
-  width: 160px;
-  height: 22px;
+.column {
+  width: 50%;
 }
-.studentProfile {
-  padding: 0;
+.image {
+  width: 70%;
+  margin: auto;
 }
-.chooseActivity {
-  padding: 0px !important;
-  line-height: 1em;
-  width: 160px;
-  height: 22px;
+.image > img {
+  border-radius: 50%;
+  margin-top: 2px;
 }
-.button {
-  margin-top: 6%;
-  line-height: 1em;
-  padding: 0px;
-  width: 90px;
-  height: 22px;
-  border: 3px solid #b1e5ff;
-  background-color: #7b8892;
-  color: black;
+.studentExp {
+  margin: auto;
+  margin-top: 12%;
+}
+// Bottom of Request
+.requestForm {
+  width: 95%;
+  margin: auto;
+}
+.searchStudent {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.select {
+  width: 100%;
+}
+select {
+  width: 100%;
+}
+.messageInput {
+  width: 75%;
+  height: 100%;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="hero">
+  <div id="app" class="hero is-marginless is-paddingless">
     <Navbar></Navbar>
     <router-view></router-view>
   </div>

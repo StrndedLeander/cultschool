@@ -5,11 +5,11 @@
         <div class="columns">
           <div class="column first">
             <MakeRequest class="makeReq topReq"></MakeRequest>
-            <MakeRequest class="makeReq downReq"></MakeRequest>
+            <!-- <MakeRequest class="makeReq downReq"></MakeRequest> -->
           </div>
           <div class="column second">
             <GetRequest class="getReq topReq"></GetRequest>
-            <GetRequest class="getReq downReq"></GetRequest>
+            <!-- <GetRequest class="getReq downReq"></GetRequest> -->
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default {
   margin: 2.5vw 2.5vw 2.5vw 2.5vw;
   width: 95vw;
 }
-.columns {
+/* .columns {
   margin: 0;
   padding: 0;
   margin-top: 1.5%;
@@ -48,9 +48,9 @@ export default {
   padding: 0;
 }
 .second{
-  margin-left: 0.2vw;
-}
-.downReq {
+  margin-left: 0.2vw; */
+/* } */
+/* .downReq {
   margin-top: 10%;
-}
+} */
 </style>
