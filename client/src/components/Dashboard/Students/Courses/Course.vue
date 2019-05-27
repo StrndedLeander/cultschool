@@ -26,15 +26,15 @@
       <div class="content is-marginless is-paddingless">
         <label class="label lessonLabel">Lessons:</label>
         <ol class="lessonlist is-marginless has-text-white">
-          <li class="lessons" v-for="lesson in lessons" :key="lesson.index">
-            {{lesson.name}}
+          <li class="lessons" v-for="unit in units" :key="unit.index">
+            {{unit.name}}
             <ol
-              v-if="lesson.lessons.length > 0"
+              v-if="unit.lessons.length > 0"
               class="secondaryList is-upper-roman is-marginless is-paddingless"
             >
               <li
                 class="secondaryLesson"
-                v-for="les in lesson.lessons"
+                v-for="les in unit.lessons"
                 :key="les.index"
               >{{les.name}}</li>
             </ol>
@@ -114,16 +114,16 @@ export default {
         text: "",
         imageSrc: "https://via.placeholder.com/214x120"
       },
-      lessons: [
+      units: [
         {
           index: "1",
-          name: "Lektion #1",
+          name: "Unit #1",
           lessons: [{ index: "1.1", name: "Lektion #1.1" }]
         },
-        { index: "2", name: "Lektion #2", lessons: [] },
-        { index: "3", name: "Lektion #3", lessons: [] },
-        { index: "4", name: "Lektion #4", lessons: [] },
-        { index: "5", name: "Lektion #5", lessons: [] }
+        { index: "2", name: "Unit #2", lessons: [] },
+        { index: "3", name: "Unit #3", lessons: [] },
+        { index: "4", name: "Unit #4", lessons: [] },
+        { index: "5", name: "Unit #5", lessons: [] }
       ],
       belegt: 1000,
       absolviert: 150,
