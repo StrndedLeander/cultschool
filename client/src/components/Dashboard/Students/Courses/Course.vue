@@ -191,7 +191,7 @@ export default {
   margin: auto;
 }
 .attend {
-  margin-top: 2%;
+  margin-top: 1%;
   margin-right: 2%;
 }
 @media screen and (min-wdith: 1024px) {

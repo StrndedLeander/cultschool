@@ -1,4 +1,4 @@
-export type Page = {
+export interface Page {
   readonly type: string // image, text( caption, normal, subtext, listing ...)
   readonly font: string
   readonly fontSize: number
