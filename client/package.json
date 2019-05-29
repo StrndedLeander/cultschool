@@ -17,6 +17,7 @@
     "sass-loader": "^7.1.0",
     "vee-validate": "^2.2.5",
     "vue": "^2.6.10",
+    "vue-carousel": "^0.18.0",
     "vue-radial-progress": "^0.2.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"

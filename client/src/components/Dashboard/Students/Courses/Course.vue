@@ -3,46 +3,44 @@
     <div class="columns is-mobile uppperCourse">
       <div class="column">
         <div class="tags are-small has-addons is-marginless">
-          <span class="tag is-white">{{subject}}</span>
-          <span class="tag is-dark">{{creator}}</span>
+          <span class="tag is-white">{{courseInfo.subject}}</span>
+          <span class="tag is-dark">{{courseInfo.creator}}</span>
         </div>
       </div>
       <div class="column is-one-fifth is-paddingless">
         <radial-progress-bar
           class="progress"
           :diameter="50"
-          :completed-steps="courseProgress.progress"
+          :completed-steps="courseInfo.progress"
           :total-steps="100"
           :strokeWidth="6"
-          :startColor="courseProgress.startColor"
-          :innerStrokeColor="courseProgress.innerStrokeColor"
+          :startColor="progressBar.startColor"
+          :innerStrokeColor="progressBar.innerStrokeColor"
         >
-          <p class="progressTxt has-text-black">{{ courseProgress.progress }}%</p>
+          <p class="progressTxt has-text-black">{{ courseInfo.progress }}%</p>
         </radial-progress-bar>
       </div>
     </div>
     <div class="is-marginless is-paddingless">
-      <label class="label is-marginless has-text-centered courseName">{{courseName}}</label>
+      <label
+        class="label is-marginless has-text-centered courseName"
+      >{{courseInfo.courseName}}{{courseInfo.courseID}}</label>
       <div class="content is-marginless is-paddingless">
         <label class="label lessonLabel">Lessons:</label>
         <ol class="lessonlist is-marginless has-text-white">
-          <li class="lessons" v-for="unit in units" :key="unit.index">
+          <li class="lessons" v-for="unit in courseInfo.units" :key="unit.index">
             {{unit.name}}
             <ol
               v-if="unit.lessons.length > 0"
               class="secondaryList is-upper-roman is-marginless is-paddingless"
             >
-              <li
-                class="secondaryLesson"
-                v-for="les in unit.lessons"
-                :key="les.index"
-              >{{les.name}}</li>
+              <li class="secondaryLesson" v-for="les in unit.lessons" :key="les.index">{{les.name}}</li>
             </ol>
           </li>
         </ol>
       </div>
       <figure class="image coursePic">
-        <img :src="description.imageSrc">
+        <img :src="courseInfo.imageSrc">
       </figure>
       <div class="courseDesc has-text-centered">
         <label class="descMenu label">
@@ -60,15 +58,15 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title">{{courseName}}</p>
+              <p class="modal-card-title">{{courseInfo.courseName}}</p>
               <button class="delete" aria-label="close" @click="toggleDescription"></button>
             </header>
             <section class="modal-card-body">
               <!-- Content ... -->
               <figure class="image coursePic">
-                <img :src="description.imageSrc">
+                <img :src="courseInfo.imageSrc">
               </figure>
-              <p>{{description.text}}</p>
+              <p>{{courseInfo.text}}</p>
             </section>
             <footer class="modal-card-foot">
               <button class="button is-success">Join Course</button>
@@ -80,10 +78,10 @@
       <div class="studentNumbers">
         <div class="students content columns is-mobile has-text-centered">
           <div class="column">
-            <label class="infoLabel">Belegt: {{belegt}}</label>
+            <label class="infoLabel">Belegt: {{courseInfo.belegt}}</label>
           </div>
           <div class="column">
-            <label class="infoLabel">Absolviert: {{absolviert}}</label>
+            <label class="infoLabel">Absolviert: {{courseInfo.absolviert}}</label>
           </div>
         </div>
       </div>
@@ -100,49 +98,40 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import RadialProgressBar from "vue-radial-progress";
 export default {
+  props: [
+    "courseID",
+  ],
   components: {
     RadialProgressBar
   },
   data() {
     return {
-      subject: "Subject",
-      creator: "Creator",
-      courseName: "Course #1",
-      description: {
-        text: "",
-        imageSrc: "https://via.placeholder.com/214x120"
-      },
-      units: [
-        {
-          index: "1",
-          name: "Unit #1",
-          lessons: [{ index: "1.1", name: "Lektion #1.1" }]
-        },
-        { index: "2", name: "Unit #2", lessons: [] },
-        { index: "3", name: "Unit #3", lessons: [] },
-        { index: "4", name: "Unit #4", lessons: [] },
-        { index: "5", name: "Unit #5", lessons: [] }
-      ],
-      belegt: 1000,
-      absolviert: 150,
-      courseProgress: {
-        progress: 100,
+      progressBar: {
         startColor: "#5EFFFF",
         innerStrokeColor: "#73818B"
       },
-      showDescription: false
+      showDescription: false,
+      courseInfo: {}
     };
   },
+  computed: {
+    ...mapState("courses", {
+      coursesInfo: state => state.getInfoByIDcoursesInformation
+    })
+  },
   methods: {
+    ...mapActions("courses", ["getInfoById"]),
     toggleDescription() {
-      if (this.showDescription == true) {
-        this.showDescription = false;
-      } else {
-        this.showDescription = true;
-      }
+      this.showDescription = !this.showDescription;
     }
+  },
+  mounted() {
+    this.getInfoById(this.courseID).then(course => {
+      this.courseInfo = course[0]
+    });
   }
 };
 </script>

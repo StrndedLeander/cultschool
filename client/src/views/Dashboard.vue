@@ -46,6 +46,6 @@ export default {
 }
 .topDb {
   height: 40vh;
-  margin-top: 2%;
+  margin-top: 4%;
 }
 </style>

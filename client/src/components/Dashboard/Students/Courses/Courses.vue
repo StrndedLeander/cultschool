@@ -1,67 +1,42 @@
 <template>
   <div class="container">
-    <div class="columns">
-      <div class="column leftCol is-paddingless">
-        <Course class="leftCourse"></Course>
-        <span class="icon is-pulled-right leftArr">
-          <i class="fas fa-arrow-left"></i>
-        </span>
-      </div>
-      <div class="column midCol is-paddingless">
-        <Course class="midCourse"></Course>
-      </div>
-      <div class="column rightCol is-paddingless">
-        <Course class="rightCourse"></Course>
-        <span class="icon rightArr">
-          <i class="fas fa-arrow-right"></i>
-        </span>
-      </div>
-    </div>
+    <carousel class="carousel">
+      <slide v-for="course in this.coursesInfo" :key="course.id">
+        <Course class="course" v-bind:courseID="course.id"></Course>
+      </slide>
+    </carousel>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { Carousel, Slide } from "vue-carousel";
 import Course from "./Course";
 export default {
   components: {
-    Course
+    Course,
+    Carousel,
+    Slide
+  },
+  computed: {
+    ...mapState("courses", {
+      coursesInfo: state => state.coursesInformation
+    })
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
-  width: 50w;
+  width: 60vw;
 }
-.leftCol {
-  z-index: 0;
-  margin-right: -25%;
-  opacity: 0.75;
+.course {
+  transform: scale(0.85, 0.85);
 }
-.leftCourse {
-  transform: scale(0.80,0.80);
-  pointer-events: none;
+.carousel {
+  border: 1px solid black;
 }
-.midCol {
-  z-index: 1;
-}
-.midCourse {
-  width: 100%;
-  height: 100%;
-}
-.rightCol {
-  z-index: 0;
-  margin-left: -25%;
-  opacity: 0.75;
-}
-.rightCourse {
-  transform: scale(0.80,0.80);
-  pointer-events: none;
-}
-.leftArr {
-  margin-right: 5%;
-}
-.rightArr {
-  margin-left: 5%;
+.slider {
+  border: 1px solid black;
 }
 </style>
