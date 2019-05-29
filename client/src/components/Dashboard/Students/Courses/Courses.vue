@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <carousel class="carousel">
+    <carousel class="carousel" :perPage="1" :paginationEnabled="false" :navigationEnabled="true">
       <slide v-for="course in this.coursesInfo" :key="course.id">
         <Course class="course" v-bind:courseID="course.id"></Course>
       </slide>
@@ -28,15 +28,11 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 60vw;
+  width: 45vw;
+  height: 400px;
 }
 .course {
-  transform: scale(0.85, 0.85);
-}
-.carousel {
-  border: 1px solid black;
-}
-.slider {
-  border: 1px solid black;
+  width: 100%;
+  height: 100%;
 }
 </style>

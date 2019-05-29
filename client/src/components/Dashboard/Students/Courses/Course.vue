@@ -7,10 +7,10 @@
           <span class="tag is-dark">{{courseInfo.creator}}</span>
         </div>
       </div>
-      <div class="column is-one-fifth is-paddingless">
+      <div class="column is-one-fifth">
         <radial-progress-bar
           class="progress"
-          :diameter="50"
+          :diameter="45"
           :completed-steps="courseInfo.progress"
           :total-steps="100"
           :strokeWidth="6"
@@ -147,6 +147,10 @@ export default {
   background-color: #667581;
   border-radius: 5%;
 }
+.has-addons{
+  padding-top: 5%; 
+  padding-left: 5%;
+}
 .columns {
   height: 10%;
 }
@@ -165,7 +169,10 @@ export default {
 .secondaryLesson {
   margin-left: 10%;
 }
-
+.modal, .is-active{
+  width: 100%;
+  height: 100%;
+}
 .coursePic {
   margin: auto;
   width: 65%;
@@ -173,7 +180,7 @@ export default {
   margin-bottom: 1%;
 }
 .progressTxt {
-  font-size: 12px;
+  font-size: 10.5px;
   font-weight: 600;
 }
 .descMenu {

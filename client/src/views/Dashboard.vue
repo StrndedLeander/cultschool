@@ -9,7 +9,7 @@
           <div class="column">
             <GetRequested></GetRequested>
           </div>
-          <div class="column"></div>
+          <div class="column"><Project></Project></div>
         </div>
       </div>
     </div>
@@ -27,12 +27,14 @@
 import MakeRequest from "../components/Dashboard/Students/Request";
 import GetRequested from "../components/Dashboard/Students/Requested";
 import Courses from "../components/Dashboard/Students/Courses/Courses";
+import Project from "../components/Dashboard/Students/Project"
 export default {
   name: "dashboard",
   components: {
     MakeRequest,
     GetRequested,
-    Courses
+    Courses,
+    Project
   }
 };
 </script>
