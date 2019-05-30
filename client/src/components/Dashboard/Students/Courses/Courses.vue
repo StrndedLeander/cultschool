@@ -28,11 +28,16 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 45vw;
+  width: 40vw;
+  min-width: 355px;
   height: 400px;
 }
-.course {
+.carousel {
   width: 100%;
-  height: 100%;
+}
+.course {
+  margin-top: 3%;
+  height: 400px;
+  width: 100%;
 }
 </style>

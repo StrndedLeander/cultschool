@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="columns bottomDb  is-marginless">
+    <div class="columns bottomDb is-marginless">
       <div class="column"></div>
       <div class="column is-paddingless">
         <Courses></Courses>
