@@ -49,8 +49,9 @@
               :diameter="100"
               :completed-steps="77"
               :total-steps="100"
-              :strokeWidth="6"
+              :strokeWidth="8"
               :startColor="progressBar.startColor"
+              :stopColor="progressBar.stopColor"
               :innerStrokeColor="progressBar.innerStrokeColor"
             >
               <p class="progressTxt has-text-black">77%</p>
@@ -103,6 +104,7 @@ export default {
       projectName: "Project",
       progressBar: {
         startColor: "#5EFFFF",
+        stopColor: '#5EFFFF',
         innerStrokeColor: "#73818B"
       },
       tasks: {
@@ -150,15 +152,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.project {
-  border-radius: 5%;
-}
 .about {
   height: 18vw;
   min-width: 255px;
   min-height: 300px;
   border-right: 1px solid black;
   background-color: #afb8be;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
 }
 .progress {
   transform: translateY(22%);
@@ -169,6 +170,8 @@ export default {
   min-width: 250px;
   min-height: 300px;
   background-color: #a1a8ac;
+  border-top-right-radius: 5%;
+  border-bottom-right-radius: 5%;
 }
 .description {
   margin-top: 5%;

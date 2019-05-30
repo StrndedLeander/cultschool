@@ -15,6 +15,7 @@
           :total-steps="100"
           :strokeWidth="6"
           :startColor="progressBar.startColor"
+          :stopColor="progressBar.stopColor"
           :innerStrokeColor="progressBar.innerStrokeColor"
         >
           <p class="progressTxt has-text-black">{{ courseInfo.progress }}%</p>
@@ -111,6 +112,7 @@ export default {
     return {
       progressBar: {
         startColor: "#5EFFFF",
+        stopColor: "#5EFFFF",
         innerStrokeColor: "#73818B"
       },
       showDescription: false,
