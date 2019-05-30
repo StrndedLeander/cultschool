@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { Transport } from '@nestjs/common/enums/transport.enum';
-import { ClientsModule } from '@nestjs/microservices'
 import { AuthenticationController } from './authentication.controller';
 import { AuthenticationService } from './authentication.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserSchema } from './schemas/user.schema';
 
 @Module({
   imports: [
-    ClientsModule.register([{ name: 'AuthenticationService', transport: Transport.TCP }])
+    MongooseModule.forFeature([{name: 'User', schema: UserSchema}])
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService]

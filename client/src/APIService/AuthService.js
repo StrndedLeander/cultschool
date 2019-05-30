@@ -1,7 +1,5 @@
-import API from './APIService'
-
 export default {
-  login(body) {
-
+  register(body) {
+    return this.$http.post('/authentication/create', body)
   }
 }
