@@ -1,9 +1,11 @@
 <template>
-  <div class="request container is-marginless is-paddingless">
-    <article></article>
+  <div class="userProfile" v-if="profileVisible" @mouseleave="hideProfile">
+    <UserProfile :id="1"></UserProfile>
+  </div>
+  <div class="request container is-paddingless" v-else>
     <div class="columns studentInfo is-mobile">
       <div class="studentProfile column is-paddingless">
-        <figure class="image">
+        <figure class="image" @mouseenter="showProfile">
           <img src="https://via.placeholder.com/64">
         </figure>
       </div>
@@ -57,16 +59,45 @@
 </template>
 
 <script>
+import UserProfile from "../UserProfile";
 import StudentExp from "../../Students/Experience";
+import { mapState } from "vuex";
 export default {
   components: {
-    StudentExp
+    StudentExp,
+    UserProfile
   },
   data() {
     return {
       selectedActivity: "Choose an Activity!",
-      activities: ["Course #1", "Course #2", "Course #3", "Project #1"]
+      profileVisible: false,
+      activities: []
     };
+  },
+  computed: {
+    ...mapState("user", {
+      courses: state => state.courses,
+      projects: state => state.projects
+    })
+  },
+  methods: {
+    setActivities() {
+      for (let i = 0; i < this.courses.length; i++) {
+        this.activities.push(courses[i].name);
+      }
+      for (let j = 0; j < this.projects.length; j++) {
+        this.activities.push(projects[i].name);
+      }
+    },
+    showProfile() {
+      this.profileVisible = true;
+    },
+    hideProfile() {
+      this.profileVisible = false;
+    }
+  },
+  mounted() {
+    this.setActivities();
   }
 };
 </script>

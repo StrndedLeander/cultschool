@@ -154,7 +154,7 @@ export default {
 <style lang="scss" scoped>
 .about {
   height: 18vw;
-  min-width: 255px;
+  width: 255px;
   min-height: 300px;
   border-right: 1px solid black;
   background-color: #afb8be;

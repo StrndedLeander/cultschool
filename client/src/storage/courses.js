@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     coursesInformation: [{
-      id: "1",
+      id: "crs1",
       subject: "Subject",
       creator: "Creator",
       courseName: "Course #1",
@@ -11,13 +11,14 @@ export default {
       units: [
         {
           index: "1",
+          id: "un1",
           name: "Unit #1",
-          lessons: [{ index: "1.1", name: "Lektion #1.1" }]
+          lessons: [{ index: "1.1", id: "ls1", name: "Lektion #1.1", pages: [{ index: "1.1.1", id: "pg1", name: "Page #1.1.1" }] }]
         },
-        { index: "2", name: "Unit #2", lessons: [] },
-        { index: "3", name: "Unit #3", lessons: [] },
-        { index: "4", name: "Unit #4", lessons: [] },
-        { index: "5", name: "Unit #5", lessons: [] }
+        { index: "2", id: "un2", name: "Unit #2", lessons: [] },
+        { index: "3", id: "un3", name: "Unit #3", lessons: [] },
+        { index: "4", id: "un4", name: "Unit #4", lessons: [] },
+        { index: "5", id: "un5", name: "Unit #5", lessons: [] }
       ],
       belegt: 1000,
       absolviert: 150,
@@ -69,8 +70,8 @@ export default {
 
   },
   actions: {
-    getInfoById({state}, id) {
-      var course = state.coursesInformation.filter(el =>{
+    getInfoById({ state }, id) {
+      var course = state.coursesInformation.filter(el => {
         return el.id == id
       })
       // console.log(id,course)

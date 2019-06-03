@@ -107,11 +107,7 @@ export default {
   },
   methods: {
     toggleTouchMenu() {
-      if (this.touchMenu == true) {
-        this.touchMenu = false;
-      } else {
-        this.touchMenu = true;
-      }
+      this.touchMenu = !this.touchMenu
     }
   }
 };

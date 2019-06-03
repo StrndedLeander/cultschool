@@ -1,13 +1,13 @@
 <template>
   <div class="hero-body">
-    <div class="columns topDb  is-marginless">
+    <div class="columns topDb is-marginless">
       <div class="column is-paddingless">
         <div class="columns">
-          <div class="column">
-            <MakeRequest></MakeRequest>
+          <div class="column is-paddingless">
+            <MakeRequest class="req"></MakeRequest>
           </div>
-          <div class="column">
-            <GetRequested></GetRequested>
+          <div class="column is-paddingless">
+            <GetRequested class="req"></GetRequested>
           </div>
           <div class="column"><Project></Project></div>
         </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="columns bottomDb is-marginless">
       <div class="column"></div>
-      <div class="column is-paddingless">
+      <div class="column courseCol is-paddingless">
         <Courses></Courses>
       </div>
       <div class="column"></div>
@@ -45,9 +45,17 @@ export default {
   background-image: url("../assets/Dashboard/hexagon.png");
   margin: 2.5vw 2.5vw 2.5vw 2.5vw;
   width: 95vw;
+  height: 80vh;
+  border: 1px solid black;
 }
 .topDb {
   height: 40vh;
   margin-top: 4%;
+}
+.req {
+  margin-top: 5%;
+}
+.courseCol{
+  transform: scale(0.8,0.8)
 }
 </style>
