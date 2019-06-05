@@ -31,6 +31,7 @@ export default {
   width: 40vw;
   min-width: 355px;
   height: 400px;
+  position: relative;
 }
 .carousel {
   width: 100%;

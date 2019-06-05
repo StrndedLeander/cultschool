@@ -47,6 +47,7 @@ export default {
   width: 95vw;
   height: 80vh;
   border: 1px solid black;
+  position: relative;
 }
 .topDb {
   height: 40vh;

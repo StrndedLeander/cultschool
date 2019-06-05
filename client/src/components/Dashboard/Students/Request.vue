@@ -83,10 +83,10 @@ export default {
   methods: {
     setActivities() {
       for (let i = 0; i < this.courses.length; i++) {
-        this.activities.push(courses[i].name);
+        this.activities.push(this.courses[i].name);
       }
       for (let j = 0; j < this.projects.length; j++) {
-        this.activities.push(projects[i].name);
+        this.activities.push(this.projects[j].name);
       }
     },
     showProfile() {
@@ -98,6 +98,7 @@ export default {
   },
   mounted() {
     this.setActivities();
+    console.log(this.activities)
   }
 };
 </script>

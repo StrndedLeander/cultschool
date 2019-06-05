@@ -45,8 +45,11 @@ export default {
   min-width: 300px;
   border: 1px solid black;
   margin-left: 5%;
-  z-index: 1;
+  z-index: 10;
   background-color: #afb8be;
+  top: 0;
+  left:0;
+  position: absolute;
 }
 .userImg {
   margin-left: 15%;

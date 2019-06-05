@@ -172,8 +172,6 @@ export default {
   margin-left: 10%;
 }
 .modal, .is-active{
-  width: 100%;
-  height: 100%;
 }
 .coursePic {
   margin: auto;
