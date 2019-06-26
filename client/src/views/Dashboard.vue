@@ -3,19 +3,19 @@
     <div class="columns topDb is-marginless">
       <div class="column is-paddingless">
         <div class="columns">
-          <div class="column is-paddingless">
+          <div class="column is-paddingless section">
             <MakeRequest class="req"></MakeRequest>
           </div>
-          <div class="column is-paddingless">
+          <div class="column is-paddingless section">
             <GetRequested class="req"></GetRequested>
           </div>
-          <div class="column"><Project></Project></div>
+          <div class="column section"><Project></Project></div>
         </div>
       </div>
     </div>
     <div class="columns bottomDb is-marginless">
       <div class="column"></div>
-      <div class="column courseCol is-paddingless">
+      <div class="column courseCol is-paddingless section">
         <Courses></Courses>
       </div>
       <div class="column"></div>
@@ -43,11 +43,12 @@ export default {
 .hero-body {
   padding: 0;
   background-image: url("../assets/Dashboard/hexagon.png");
-  margin: 2.5vw 2.5vw 2.5vw 2.5vw;
-  width: 95vw;
-  height: 80vh;
+  margin: 1vw 1vw 1vw 1vw;
+  width: 98vw;
+  height: 84vh;
   border: 1px solid black;
   position: relative;
+  overflow: hidden;
 }
 .topDb {
   height: 40vh;

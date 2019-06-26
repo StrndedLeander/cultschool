@@ -39,84 +39,68 @@
     <div class="is-divider"></div>
     <!-- Mid of Profile-->
     <div class="midProfile">
-      <div class="courses">
-        <table class="table is-hoverable is-scrollable">
-          <thead>
-            <tr>
-              <th class="topicBody has-text-left is-paddingless">Topic</th>
-              <th class="nameHead has-text-left is-paddingless">Name</th>
-              <th class="percHead has-text-left is-paddingless">
-                <abbr title="Progress">%</abbr>
-              </th>
-              <th class="lvlHead has-text-left is-paddingless">
-                <abbr title="Level">Lvl</abbr>
-              </th>
-              <th class="teacherHead has-text-centered is-paddingless">Teacher</th>
-              <th class="likesHead has-text-centered is-paddingless">
-                <span class="icon">
-                  <i class="fas fa-heart"></i>
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="is-paddingless" v-for="course in courses" :key="course.id">
-              <th class="topicBody">{{course.topic}}</th>
-              <th class="nameBody">{{course.name}}</th>
-              <td class="percBody is-paddingless">
-                <progress class="progress is-info" :value="course.progress" max="100"></progress>
-              </td>
-              <td class="lvlBody">{{course.suggestedLvl}}</td>
-              <td class="teacherBody">{{course.teacher}}</td>
-              <td class="likesBody">{{Math.floor((course.likes/course.noStudents)*100)}}%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="unities">
-        <table class="unityTable is-fullwidth table is-hoverable is-scrollable">
-          <thead>
-            <tr>
-              <th>Teacher</th>
-              <th>Name</th>
-              <td>Organisation</td>
-              <td>Students</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div class="projects">
-        <table class="projectTable is-fullwidth table is-hoverable is-scrollable">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Topics</th>
-              <td><abbr title="Progress">%</abbr></td>
-              <td>Level</td>
-              <td>Teacher</td>
-              <td>Students</td>
-              <th class="projectLikes">
-                <span class="icon">
-                  <i class="fas fa-heart"></i>
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="is-paddingless" v-for="project in projects" :key="project.id">
-              <th class="topicBody">{{project.name}}</th>
-              <th class="nameBody">{{project.topics}}</th>
-              <td class="percBody is-paddingless">
-                <progress class="progress is-info" :value="project.progress" max="100"></progress>
-              </td>
-              <td class="lvlBody">{{project.suggestedLvl}}</td>
-              <td class="teacherBody">{{project.teacher}}</td>
-              <td class="likesBody">{{Math.floor((course.likes/course.noStudents)*100)}}%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="courseTable is-fullwidth table is-bordered">
+        <thead>
+          <tr>
+            <th class="has-text-centered is-paddingless">Topic</th>
+            <th class="has-text-centered is-paddingless">Name</th>
+            <th class="has-text-centered is-paddingless">
+              <abbr class="has-text-centered" title="Difficulty Level">Lvl</abbr>
+            </th>
+            <th class="teacherHead has-text-centered is-paddingless">Teacher</th>
+            <th class="likesHead has-text-centered is-paddingless">
+              <abbr title="Progress">%</abbr>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="courseBody">
+          <tr v-for="course in courses" :key="course.id">
+            <td class="is-paddingless">{{course.topic}}</td>
+            <td class="is-paddingless">{{course.name}}</td>
+            <td class="is-paddingless">{{course.suggestedLvl}}</td>
+            <td class="is-paddingless">{{course.teacher}}</td>
+            <td class="is-paddingless">{{course.progress}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="unityTable table is-fullwidth is-bordered table is-hoverable">
+        <thead>
+          <tr>
+            <th class="has-text-centered is-paddingless">Teacher</th>
+            <th class="has-text-centered is-paddingless">Name</th>
+            <td class="has-text-centered is-paddingless">Organisation</td>
+            <td class="has-text-centered is-paddingless">Students</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="unity in unities" :key="unity.id">
+            <td class="is-paddingless">{{unity.teacher}}</td>
+            <td class="is-paddingless">{{unity.name}}</td>
+            <td class="is-paddingless organisationAbbr">
+              {{unity.organisationAbbr}}
+              <span>
+                <td class="is-paddingless organisationName">{{unity.organisationName}}</td>
+              </span>
+            </td>
+            <td class="is-paddingless">{{unity.noStudents}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="projectTable is-fullwidth table is-bordered is-hoverable">
+        <thead>
+          <tr>
+            <th class="has-text-centered is-paddingless">Topics</th>
+            <th class="has-text-centered is-paddingless">Name</th>
+            <th class="has-text-centered is-paddingless">
+              <abbr title="Difficulty Level">Lvl</abbr>
+            </th>
+            <td class="has-text-centered is-paddingless">Teacher</td>
+            <td class="has-text-centered is-paddingless">
+              <abbr title="Progress">%</abbr>
+            </td>
+          </tr>
+        </thead>
+      </table>
     </div>
   </div>
 </template>
@@ -125,7 +109,7 @@
 import { mapState } from "vuex";
 import StudentExp from "../Students/Experience";
 export default {
-  props: ["id"],
+  props: ["userID"],
   components: {
     StudentExp
   },
@@ -149,8 +133,8 @@ export default {
 .profile {
   width: 28vw;
   height: 60vh;
-  min-width: 400px;
-  min-height: 570px;
+  min-width: 420px;
+  min-height: 630px;
   max-width: 500px;
   max-height: 1200px;
   border: 1px solid black;
@@ -214,17 +198,19 @@ export default {
 .rightCol {
   margin-top: 3%;
 }
-.midProfile > .container {
-  height: 100%;
+.midProfile {
+  height: 85%;
 }
-.table {
-  transform: translateY(-15%);
+.midProfile {
+  transform: translateY(-5%);
 }
-.is-scrollable tbody {
+.courseTable {
+  margin-top: 5%;
+  max-height: 200px;
+}
+tbody {
   overflow-y: auto;
-  width: auto;
-  position: absolute;
-  height: 400%;
+  overflow-x: hidden;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -236,71 +222,20 @@ export default {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(78, 78, 78);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-tbody {
-  font-size: 80%;
+.organisationName {
+  display: none;
 }
-tr {
-  height: 100%;
+.organisationAbbr:hover + .organisationName {
+  display: unset;
 }
-.topicHead {
-  width: 22%;
-}
-
-.nameHead {
-  width: 22%;
-}
-.percHead {
-  width: 5%;
-}
-.lvlHead {
-  width: 13%;
-}
-.teacherHead {
-  width: 27%;
-}
-.likesHead {
-  width: 10%;
-}
-.topicBody {
-  width: 30%;
-}
-.nameBody {
-  width: 30%;
-}
-.percBody {
-  width: 5%;
-}
-.lvlHead {
-  width: 5%;
-}
-.teacherBody {
-  width: 27%;
-}
-.likesBody {
-  width: 3%;
-}
-//2nd table
-.unityTable > thead > tr > th {
-  width: 25%;
-}
-.unityTable > thead > tr > td {
-  width: 25%;
-}
-//3rd table
-.projectTable > thead > tr > td {
-  width: 20%;
-}
-.projectTable > thead > tr > th {
-  width: 22%;
-}
-.porjectLikes{
-  width: 12%;
+.organisationName:hover + .organisationAbbr {
+  display: unset;
 }
 </style>

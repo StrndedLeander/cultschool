@@ -1,8 +1,11 @@
 <template>
-  <div class="getRequest container">
+<div class="userProfile" v-if="profileVisible" @mouseleave="hideProfile">
+    <UserProfile :userID="1" class="userProfile" id="userProfile"></UserProfile>
+  </div>
+  <div class="getRequest container" v-else >
     <div class="columns studentInfo is-mobile">
       <div class="studentProfile column is-paddingless">
-        <figure class="image">
+        <figure class="image"  @mouseenter="showProfile">
           <img src="https://via.placeholder.com/64">
         </figure>
       </div>
@@ -27,17 +30,28 @@
 
 <script>
 import StudentExp from "../../Students/Experience";
+import UserProfile from "../UserProfile";
 export default {
   components: {
-    StudentExp
+    StudentExp,
+    UserProfile
   },
   data() {
     return {
       studentName: "Surname Name",
       activityName: "Course #1",
-      requestMessage: "Hello pls work with me please thank you"
+      requestMessage: "Hello pls work with me please thank you",
+      profileVisible: false
     };
-  }
+  },
+  methods: {
+    showProfile() {
+      this.profileVisible = true;
+    },
+    hideProfile() {
+      this.profileVisible = false;
+    }
+  },
 };
 </script>
 

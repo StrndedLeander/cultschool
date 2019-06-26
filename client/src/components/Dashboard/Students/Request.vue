@@ -1,11 +1,11 @@
 <template>
   <div class="userProfile" v-if="profileVisible" @mouseleave="hideProfile">
-    <UserProfile :id="1"></UserProfile>
+    <UserProfile :userID="1" class="userProfile" id="userProfile"></UserProfile>
   </div>
-  <div class="request container is-paddingless" v-else>
+  <div class="request container" v-else>
     <div class="columns studentInfo is-mobile">
       <div class="studentProfile column is-paddingless">
-        <figure class="image" @mouseenter="showProfile">
+        <figure class="image" @mouseenter="getPos">
           <img src="https://via.placeholder.com/64">
         </figure>
       </div>
@@ -38,7 +38,7 @@
       <div class="field is-grouped is-paddingless is-marginless">
         <div class="messageInput control has-icons-left has-icons-right">
           <input
-            class="input is-small is-rounded has-text-centered is-marginless is-paddingless"
+            class="input is-small is-roundeSd has-text-centered is-marginless is-paddingless"
             type="text"
             placeholder="Send Message.."
           >
@@ -59,9 +59,10 @@
 </template>
 
 <script>
+import Vue from "vue";
 import UserProfile from "../UserProfile";
 import StudentExp from "../../Students/Experience";
-import { mapState } from "vuex";
+import { mapState,mapActions } from "vuex";
 export default {
   components: {
     StudentExp,
@@ -81,6 +82,7 @@ export default {
     })
   },
   methods: {
+    ...mapActions("ui", ["setPosUserProfile"]),
     setActivities() {
       for (let i = 0; i < this.courses.length; i++) {
         this.activities.push(this.courses[i].name);
@@ -94,17 +96,24 @@ export default {
     },
     hideProfile() {
       this.profileVisible = false;
+    },
+    setPosUserProfile(e) {
+      console.log(e.x);
+      const x = e.x;
+      const y = e.y;
+      const obj = document.getElementById("userProfile")
+      this.setPosUserProfile(obj, x, y);
     }
   },
   mounted() {
     this.setActivities();
-    console.log(this.activities)
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .request {
+  padding-top: 2%;
   width: 13vw;
   height: 13vw;
   max-width: 200px;
