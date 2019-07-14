@@ -2,38 +2,25 @@
   <div class="profile container">
     <!-- Top of Profile -->
     <div class="columns studentInfo is-mobile">
-      <div class="column is-paddingless">
+      <div class="column">
         <figure class="image userImg is-96x96">
-          <img src="https://via.placeholder.com/96">
+          <img src="https://via.placeholder.com/96" />
         </figure>
       </div>
-      <div class="column is-paddingless is-half has-text-centered">
+      <div class="column is-half has-text-centered">
         <label class="label username">{{username}}</label>
-        <ul>
-          <li></li>
-        </ul>
+        <span class="icon">
+          <i class="fas fa-plus"></i>
+        </span>
+        <span class="icon">
+          <i class="far fa-sticky-note"></i>
+        </span>
+        <span class="icon">
+          <i class="fas fa-comment"></i>
+        </span>
       </div>
-      <div class="column is-paddingless has-text-right">
+      <div class="column">
         <StudentExp class="studentExp"></StudentExp>
-      </div>
-      <div class="column actionCol">
-        <div class="profileActions has-text-right">
-          <div>
-            <span class="icon">
-              <i class="fas fa-plus"></i>
-            </span>
-          </div>
-          <div>
-            <span class="icon">
-              <i class="far fa-sticky-note"></i>
-            </span>
-          </div>
-          <div>
-            <span class="icon">
-              <i class="fas fa-comment"></i>
-            </span>
-          </div>
-        </div>
       </div>
     </div>
     <div class="is-divider"></div>
@@ -42,24 +29,25 @@
       <table class="courseTable is-fullwidth table is-bordered">
         <thead>
           <tr>
-            <th class="has-text-centered is-paddingless">Topic</th>
-            <th class="has-text-centered is-paddingless">Name</th>
-            <th class="has-text-centered is-paddingless">
-              <abbr class="has-text-centered" title="Difficulty Level">Lvl</abbr>
-            </th>
-            <th class="teacherHead has-text-centered is-paddingless">Teacher</th>
-            <th class="likesHead has-text-centered is-paddingless">
-              <abbr title="Progress">%</abbr>
-            </th>
+            <th class="has-text-centered">Name</th>
+            <th class="has-text-centered">Teacher</th>
+            <th class="has-text-centered">Progress[%]</th>
           </tr>
         </thead>
         <tbody class="courseBody">
           <tr v-for="course in courses" :key="course.id">
-            <td class="is-paddingless">{{course.topic}}</td>
             <td class="is-paddingless">{{course.name}}</td>
-            <td class="is-paddingless">{{course.suggestedLvl}}</td>
             <td class="is-paddingless">{{course.teacher}}</td>
-            <td class="is-paddingless">{{course.progress}}</td>
+            <td class="is-paddingless">
+              <div class="courseProgress">
+                <progress
+                  class="progress is-info is-marginless"
+                  :value="course.progress"
+                  max="100"
+                >{{course.progress}}%</progress>
+                <p class="has-text-centered progressionText is-size-7">{{course.progress}}%</p>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -106,7 +94,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import StudentExp from "../Students/Experience";
 export default {
   props: ["userID"],
@@ -125,14 +113,19 @@ export default {
       projects: state => state.projects,
       unities: state => state.unities
     })
+  },
+  methods: {
+    ...mapMutations("ui", [
+      "toggleUserProfile"
+    ])
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .profile {
-  width: 28vw;
-  height: 60vh;
+  width: 25vw;
+  height: 55vh;
   min-width: 420px;
   min-height: 630px;
   max-width: 500px;
@@ -141,8 +134,6 @@ export default {
   margin-left: 5%;
   z-index: 10;
   background-color: #afb8be;
-  top: 0;
-  left: 0;
   position: absolute;
 }
 .studentInfo {
@@ -151,41 +142,31 @@ export default {
 .fa-heart {
   color: red;
 }
+.userImg {
+  margin-left: 5%;
+  margin-top: 5%;
+  margin-right: 5%;
+}
+.courseProgress{
+  transform: translateY(50%);
+}
 @media screen and (max-width: 1350px) {
   .userImg {
     transform: scale(0.9, 0.9);
   }
 }
 @media screen and (max-width: 1250px) {
-  .userImg {
-    margin-left: 15%;
-    margin-top: 15%;
-    margin-right: 5%;
-  }
   .username {
     margin-left: 8%;
     margin-top: 20%;
     font-size: 130%;
   }
-  .studentExp {
-    margin: auto;
-    margin-top: 55%;
-  }
 }
 @media screen and (min-width: 1251px) {
-  .userImg {
-    margin-left: 15%;
-    margin-top: 15%;
-    margin-right: 5%;
-  }
   .username {
     margin-left: 5%;
     margin-top: 20%;
     font-size: 150%;
-  }
-  .studentExp {
-    margin: auto;
-    margin-top: 65%;
   }
 }
 .profileActions {

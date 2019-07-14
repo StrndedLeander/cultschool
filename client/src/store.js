@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import auth from './storage/auth'
 import user from './storage/user'
 import courses from './storage/courses'
-import viewProfile from './storage/viewProfile'
 import ui from './storage/ui'
 
 Vue.use(Vuex)
@@ -13,7 +12,6 @@ export default new Vuex.Store({
     auth: auth,
     user: user,
     courses: courses,
-    viewProfile: viewProfile,
     ui: ui
   },
   state: {

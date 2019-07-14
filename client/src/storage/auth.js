@@ -12,7 +12,8 @@ export default {
       username: '',
       email: '',
       password: ''
-    }
+    },
+    userLoggedIn: false
   },
   getters:{
 

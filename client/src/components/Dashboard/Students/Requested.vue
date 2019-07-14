@@ -1,15 +1,15 @@
 <template>
-<div class="userProfile" v-if="profileVisible" @mouseleave="hideProfile">
+  <div class="userProfile" v-if="profileVisible" @mouseleave="hideProfile">
     <UserProfile :userID="1" class="userProfile" id="userProfile"></UserProfile>
   </div>
-  <div class="getRequest container" v-else >
+  <div class="getRequest container" v-else>
     <div class="columns studentInfo is-mobile">
-      <div class="studentProfile column is-paddingless">
-        <figure class="image"  @mouseenter="showProfile">
-          <img src="https://via.placeholder.com/64">
+      <div class="studentProfile column">
+        <figure class="image" @mouseenter="showProfile">
+          <img src="https://via.placeholder.com/64" />
         </figure>
       </div>
-      <div class="column is-paddingless">
+      <div class="column">
         <StudentExp class="studentExp"></StudentExp>
       </div>
     </div>
@@ -19,7 +19,12 @@
         <span class="tag is-dark">{{studentName}}</span>
         <span class="tag is-info">{{activityName}}</span>
       </div>
-      <textarea class="textarea is-paddingless is-small has-fixed-size" rows="2" readonly v-model="requestMessage"></textarea>
+      <textarea
+        class="textarea is-paddingless is-small has-fixed-size"
+        rows="2"
+        readonly
+        v-model="requestMessage"
+      ></textarea>
       <div class="buttons are-small">
         <button type="button" class="button has-text-white accept is-paddingless">Accept</button>
         <button type="button" class="button has-text-white decline is-paddingless">Decline</button>
@@ -51,12 +56,13 @@ export default {
     hideProfile() {
       this.profileVisible = false;
     }
-  },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .getRequest {
+  padding-top: 2%;
   width: 13vw;
   height: 13vw;
   max-width: 200px;
@@ -67,10 +73,6 @@ export default {
   border-radius: 5%;
 }
 // top of request
-.studenInfo {
-  width: 100%;
-  height: 100%;
-}
 .column {
   width: 50%;
 }

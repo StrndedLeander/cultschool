@@ -7,10 +7,22 @@
 
 <script>
 import Navbar from "./components/Navbar";
+import { mapState, mapMutations } from "vuex"
 export default {
   components: {
     Navbar
-  }
+  },
+  computed: {
+    ...mapState("ui",{
+      userProfileDropOut: state => state.userProfileShowing
+    })
+  },
+  methods: {
+    //make background opaque when user profile is triggered
+    opaqueBg() {
+      
+    }
+  },
 };
 </script>
 

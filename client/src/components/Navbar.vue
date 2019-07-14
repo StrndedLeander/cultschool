@@ -2,12 +2,17 @@
   <div class="navigation hero">
     <nav class="navbar has-text-centered" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <router-link class="profile" to="#">
-          <span class="icon">
-            <i class="fas fa-user"></i>
-          </span>
-        </router-link>
-        <StudentsExp class="studentsExp"></StudentsExp>
+        <div v-if="userLoggedIn">
+          <router-link class="profile" to="#">
+            <span class="icon">
+              <i class="fas fa-user"></i>
+            </span>
+          </router-link>
+          <StudentsExp class="studentsExp"></StudentsExp>
+        </div>
+        <div v-else>
+          <p>KultSchool</p>
+        </div>
         <div class="dropdown is-hidden-desktop" v-bind:class="{'is-active': touchMenu}">
           <div class="dropdown-trigger">
             <button
@@ -41,7 +46,7 @@
                     <i class="fas fa-chevron-right"></i>
                   </span>
                 </a>
-                <hr class="dropdown-divider">
+                <hr class="dropdown-divider" />
                 <a class="dropdown-item">EXPLORE</a>
               </div>
             </div>
@@ -72,7 +77,7 @@
             <p>EXPLORE</p>
           </a>
         </div>
-        <div class="navbar-end">
+        <div class="navbar-end" v-if="userLoggedIn">
           <a class="navEnd">
             <span class="icon">
               <i class="fas fa-search"></i>
@@ -89,6 +94,13 @@
             </span>
           </a>
         </div>
+        <div v-else>
+          <router-link class="signBtn button has-background-grey has-text-white" to="/login">Sign In</router-link>
+          <router-link
+            class="signBtn button has-background-grey-dark has-text-white"
+            to="/register"
+          >Sign Up</router-link>
+        </div>
       </div>
     </nav>
   </div>
@@ -96,6 +108,7 @@
 
 <script>
 import StudentsExp from "./Students/Experience";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -105,9 +118,14 @@ export default {
   components: {
     StudentsExp
   },
+  computed: {
+    ...mapState("auth", {
+      userLoggedIn: state => state.userLoggedIn
+    })
+  },
   methods: {
     toggleTouchMenu() {
-      this.touchMenu = !this.touchMenu
+      this.touchMenu = !this.touchMenu;
     }
   }
 };
@@ -138,7 +156,11 @@ export default {
     height: 100%;
   }
 }
-.studentsExp{
+.signBtn {
+  transform: scale(0.85, 0.85);
+  margin-top: 10%;
+}
+.studentsExp {
   margin-top: 0.5rem;
 }
 .navigation {

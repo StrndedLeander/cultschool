@@ -4,12 +4,12 @@
   </div>
   <div class="request container" v-else>
     <div class="columns studentInfo is-mobile">
-      <div class="studentProfile column is-paddingless">
-        <figure class="image" @mouseenter="getPos">
+      <div class="studentProfile column">
+        <figure class="image" @mouseenter="showProfile">
           <img src="https://via.placeholder.com/64">
         </figure>
       </div>
-      <div class="column is-paddingless">
+      <div class="column">
         <StudentExp class="studentExp"></StudentExp>
       </div>
     </div>
@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 import UserProfile from "../UserProfile";
 import StudentExp from "../../Students/Experience";
 import { mapState,mapActions } from "vuex";
